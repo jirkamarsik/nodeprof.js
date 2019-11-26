@@ -84,7 +84,7 @@ Congratulations, you're all set to run and extend NodeProf. You can now try to i
 
 ## Implementing a NodeProf analysis
 Let's assume that we are interested in an analysis that builds dynamic call graphs. The following callbacks implement a minimal NodeProf analysis that logs a context-insensitive dynamic call graph in [dot](http://www.graphviz.org/documentation/) format:
-```
+```js
 let cg = new Map();
 let lastCallsite = undefined;
 
