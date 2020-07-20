@@ -74,6 +74,10 @@ public class JalangiAdapter implements TruffleObject {
             return this.name;
         }
 
+        @TruffleBoundary
+        public static ApiMember resolveApiMember(String identifier) {
+            return ApiMember.valueOf(identifier.toUpperCase());
+        }
     }
 
     @TruffleBoundary
@@ -154,7 +158,7 @@ public class JalangiAdapter implements TruffleObject {
     final Object invokeMember(String identifier, Object[] arguments) throws ArityException, UnsupportedTypeException {
         ApiMember api;
         try {
-            api = ApiMember.valueOf(identifier.toUpperCase());
+            api = ApiMember.resolveApiMember(identifier);
         } catch (IllegalArgumentException e) {
             Logger.warning("Unsupported NodeProf-Jalangi operation " + identifier);
             return 0;
